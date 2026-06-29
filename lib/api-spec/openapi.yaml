@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Idolans Info-Tech API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: leads
+    description: Lead capture operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /leads:
+    post:
+      operationId: createLead
+      tags: [leads]
+      summary: Create a new lead
+      description: Capture a lead from the landing page
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LeadInput"
+      responses:
+        "201":
+          description: Lead created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Lead"
+        "400":
+          description: Validation error
+    get:
+      operationId: listLeads
+      tags: [leads]
+      summary: List all leads
+      description: Returns all captured leads
+      responses:
+        "200":
+          description: List of leads
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Lead"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    LeadInput:
+      type: object
+      required:
+        - name
+        - email
+        - appCategory
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        schoolName:
+          type: ["string", "null"]
+        facilitySize:
+          type: ["string", "null"]
+        appCategory:
+          type: string
+          enum:
+            - SCHOLARLY
+            - ApexCare HMS
+            - EduAI
+            - Integritest
+            - Idolans Services
+            - General
+        message:
+          type: ["string", "null"]
+    Lead:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - appCategory
+        - createdAt
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+        schoolName:
+          type: ["string", "null"]
+        facilitySize:
+          type: ["string", "null"]
+        appCategory:
+          type: string
+        message:
+          type: ["string", "null"]
+        createdAt:
+          type: string

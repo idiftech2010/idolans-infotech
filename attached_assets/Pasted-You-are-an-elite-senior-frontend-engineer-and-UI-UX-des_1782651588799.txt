@@ -1,0 +1,24 @@
+You are an elite senior frontend engineer and UI/UX designer. I want to build a world-class, multi-product cinematic landing page for "Idolans Info-Tech" that unifies 5 powerful enterprise applications into a single, cohesive marketplace ecosystem. The layout should be deeply engaging, luxurious, and visually striking, ensuring a flawless user experience.
+
+Reference the exact styling guidelines and aesthetic components visible in:
+- "Screenshot 2026-06-28 124938.jpg" (SCHOLARLY landing layout and metrics components)
+- "Screenshot 2026-06-28 130154.jpg" (ApexCare HMS dark theme layouts, subscription matrices, and vibrant trust banners)
+- "Screenshot 2026-06-28 130544.jpg" (EduAI rich feature grids, clean white surfaces, and dark contrast zones)
+
+THE SUITE OF 5 APPS TO INTRODUCE:
+1. SCHOLARLY: Next-Gen School Management Platform (Tagline: "School management done right").
+2. ApexCare HMS: Enterprise Hospital Management System & Clinical Command Center.
+3. EduAI: AI-Powered Learning Management System with smart summarizers and proctoring.
+4. Integritest: Ultra-secure online examination and candidate attendance platform.
+5. One-Page App Engine: High-converting landing page optimization deployment software.
+
+TECHNICAL REQUIREMENTS FOR REPLIT:
+- Architecture: Single-page React 18, Vite, TypeScript, Tailwind CSS, and shadcn/ui.
+- Interactivity: Framer Motion for premium smooth-scrolling animations, dark/light ambient glow, interactive canvas particles, and cinematic transitions.
+- Hero Section: An ultra-luxurious, immersive screen introducing Idolans Info-Tech with a dynamic selector carousel that previews each app using a floating glassmorphism device framework.
+- Lead Capture: A cohesive unified modal checkout flow routing leads to a robust backend database handler ('POST /api/leads') tracking school name, facility size, app category, and custom metrics as described in the briefs.
+
+Generate clean, production-ready React components, a unified theme config file matching a luxury color palette (Deep Sapphire Navy, Onyx Black, Radiant Emerald, Chrome Silver), and full TypeScript types. Proceed directly to code completion with zero introductory conversational text.
+Generate highly relative cinematic images to be used as carousel for all products, make it mind blowing
+
+Add a markdown document on how to run locally and hosting, then give the whole of the folder in downloadable zipped folder upon completion

@@ -1,0 +1,43 @@
+uploads = []
+
+[[generated]]
+id = "UdOhj5IuOajB3g8poS4VV"
+uri = "file://artifacts/idolans/src/assets/images/scholarly.png"
+type = "image"
+title = "School management dashboard"
+
+[[generated]]
+id = "K6PoaiqXw9mpegqZkMkxb"
+uri = "file://artifacts/idolans/src/assets/images/apexcare.png"
+type = "image"
+title = "Hospital command center"
+
+[[generated]]
+id = "MVWumnboer78qXU0kwFzi"
+uri = "file://artifacts/idolans/src/assets/images/eduai.png"
+type = "image"
+title = "AI learning interface"
+
+[[generated]]
+id = "tVz3dGDmt_X9qDbpNZbev"
+uri = "file://artifacts/idolans/src/assets/images/integritest.png"
+type = "image"
+title = "Secure exam platform"
+
+[[generated]]
+id = "E2G1N5NSlj5MBpUyAjo3b"
+uri = "file://artifacts/idolans/src/assets/images/appengine.png"
+type = "image"
+title = "App Engine dashboard"
+
+[[generated]]
+id = "0sXBbUx1syOwKYTeaMLse"
+uri = "file://attached_assets/generated_images/a_cinematic_dark_professional_2761.png"
+type = "image"
+title = "generated_image"
+
+[[outputs]]
+id = "OH39pEy7LTuwU89e0DvYi"
+uri = "file://idolans-infotech.tar.gz"
+type = "unspecified"
+title = "Idolans Info-Tech — Full Project"
