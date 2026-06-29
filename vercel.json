@@ -1,13 +1,4 @@
 {
-  "version": 2,
-  "buildCommand": "pnpm install --no-frozen-lockfile && PORT=3000 BASE_PATH=/ pnpm --filter idolans build",
-  "outputDirectory": "artifacts/idolans/dist/public",
-  "builds": [
-    {
-      "src": "artifacts/idolans/dist/public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
