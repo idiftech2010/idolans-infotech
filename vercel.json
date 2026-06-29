@@ -1,11 +1,7 @@
 {
-  "buildCommand": "pnpm install --frozen-lockfile && PORT=3000 BASE_PATH=/ pnpm --dir artifacts/idolans build",
+  "buildCommand": "pnpm install --no-frozen-lockfile && PORT=3000 BASE_PATH=/ pnpm --dir artifacts/idolans build",
   "outputDirectory": "artifacts/idolans/dist/public",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://onrender.com"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
