@@ -46,40 +46,79 @@ export function Products() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="space-y-6"
         >
-          {PRODUCTS.map((product, idx) => (
-            <motion.div key={product.id} variants={itemVariants} className={idx === 4 ? "md:col-span-2 lg:col-span-1" : ""}>
-              <Card className={`group h-full bg-background border-border/50 transition-all duration-500 hover:shadow-xl ${product.border} ${product.shadow}`}>
-                <CardContent className="p-8 flex flex-col h-full">
-                  <div className={`w-14 h-14 rounded-xl ${product.bg} flex items-center justify-center mb-6 transition-transform group-hover:scale-110 duration-300`}>
-                    <product.icon className={`w-7 h-7 ${product.color}`} />
-                  </div>
-                  <h4 className="text-2xl font-bold mb-2">{product.name}</h4>
-                  <p className={`text-sm font-medium ${product.color} mb-4`}>{product.tagline}</p>
-                  <p className="text-muted-foreground mb-6 flex-1">
-                    {product.description}
-                  </p>
-                  {"subItems" in product && product.subItems && (
-                    <ul className="mb-6 space-y-1.5">
-                      {product.subItems.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span className={`w-1.5 h-1.5 rounded-full ${product.bg} border ${product.color.replace("text-", "border-")}`} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  <Button asChild variant="ghost" className="w-full justify-between group/btn hover:bg-transparent hover:text-foreground p-0 h-auto font-semibold">
-                    <Link href={`/products/${product.slug}`}>
-                      Explore Platform
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <div className="grid gap-6 lg:grid-cols-3">
+            {PRODUCTS.slice(0, 3).map((product) => (
+              <motion.div key={product.id} variants={itemVariants}>
+                <Card className={`group h-full bg-background border-border/50 transition-all duration-500 hover:shadow-xl ${product.border} ${product.shadow}`}>
+                  <CardContent className="p-8 flex flex-col h-full">
+                    <div className={`w-14 h-14 rounded-xl ${product.bg} flex items-center justify-center mb-6 transition-transform group-hover:scale-110 duration-300`}>
+                      <product.icon className={`w-7 h-7 ${product.color}`} />
+                    </div>
+                    <h4 className="text-2xl font-bold mb-2">{product.name}</h4>
+                    <p className={`text-sm font-medium ${product.color} mb-4`}>{product.tagline}</p>
+                    <p className="text-muted-foreground mb-6 flex-1">
+                      {product.description}
+                    </p>
+                    {"subItems" in product && product.subItems && (
+                      <ul className="mb-6 space-y-1.5">
+                        {product.subItems.map((item) => (
+                          <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <span className={`w-1.5 h-1.5 rounded-full ${product.bg} border ${product.color.replace("text-", "border-")}`} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <Button asChild variant="ghost" className="w-full justify-between group/btn hover:bg-transparent hover:text-foreground p-0 h-auto font-semibold">
+                      <Link href={`/products/${product.slug}`}>
+                        Explore Platform
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <div className="flex w-full flex-col gap-6 md:flex-row md:justify-center md:gap-8 lg:gap-10">
+              {PRODUCTS.slice(3).map((product) => (
+                <motion.div key={product.id} variants={itemVariants} className="w-full md:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-2.5rem)/2)]">
+                  <Card className={`group h-full bg-background border-border/50 transition-all duration-500 hover:shadow-xl ${product.border} ${product.shadow}`}>
+                    <CardContent className="p-8 flex flex-col h-full">
+                      <div className={`w-14 h-14 rounded-xl ${product.bg} flex items-center justify-center mb-6 transition-transform group-hover:scale-110 duration-300`}>
+                        <product.icon className={`w-7 h-7 ${product.color}`} />
+                      </div>
+                      <h4 className="text-2xl font-bold mb-2">{product.name}</h4>
+                      <p className={`text-sm font-medium ${product.color} mb-4`}>{product.tagline}</p>
+                      <p className="text-muted-foreground mb-6 flex-1">
+                        {product.description}
+                      </p>
+                      {"subItems" in product && product.subItems && (
+                        <ul className="mb-6 space-y-1.5">
+                          {product.subItems.map((item) => (
+                            <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <span className={`w-1.5 h-1.5 rounded-full ${product.bg} border ${product.color.replace("text-", "border-")}`} />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <Button asChild variant="ghost" className="w-full justify-between group/btn hover:bg-transparent hover:text-foreground p-0 h-auto font-semibold">
+                        <Link href={`/products/${product.slug}`}>
+                          Explore Platform
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
