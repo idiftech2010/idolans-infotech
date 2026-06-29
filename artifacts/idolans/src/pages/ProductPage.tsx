@@ -105,6 +105,191 @@ export default function ProductPage() {
             </p>
           </div>
 
+          {slug === "idolans-services" ? (
+            <div className="mt-12 rounded-[2rem] border border-border/50 bg-card/70 p-4 shadow-xl sm:p-6">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">Sneak peek</p>
+                  <h3 className="mt-2 text-2xl font-semibold">A polished preview of the experience</h3>
+                </div>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+                  These visuals reflect the refined, modern interface and product storytelling that define the Idolans Services experience.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/Idolans Services.png"
+                    alt="Idolans Services product preview"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/Idolans Services 2.png"
+                    alt="Idolans Services product preview alternate view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {slug === "integritest" ? (
+            <div className="mt-12 rounded-[2rem] border border-border/50 bg-card/70 p-4 shadow-xl sm:p-6">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">Sneak peek</p>
+                  <h3 className="mt-2 text-2xl font-semibold">A polished preview of the experience</h3>
+                </div>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+                  These visuals show how Integritest presents secure assessments and a premium experience for institutions and candidates.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/integritest.png"
+                    alt="Integritest product preview"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/integritest 2.png"
+                    alt="Integritest product preview alternate view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {slug === "apexcare" ? (
+            <div className="mt-12 rounded-[2rem] border border-border/50 bg-card/70 p-4 shadow-xl sm:p-6">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">Sneak peek</p>
+                  <h3 className="mt-2 text-2xl font-semibold">A polished preview of the experience</h3>
+                </div>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+                  These visuals capture the calm, intelligent, and operationally rich experience that defines ApexCare HMS.
+                </p>
+              </div>
+              <div className="grid gap-4 xl:grid-cols-3">
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/apexcare.png"
+                    alt="ApexCare HMS product preview"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/apexcare2.png"
+                    alt="ApexCare HMS product preview alternate view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/apexcare3.png"
+                    alt="ApexCare HMS product preview detail view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {slug === "scholarly" ? (
+            <div className="mt-12 rounded-[2rem] border border-border/50 bg-card/70 p-4 shadow-xl sm:p-6">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">Sneak peek</p>
+                  <h3 className="mt-2 text-2xl font-semibold">A polished preview of the experience</h3>
+                </div>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+                  These visuals highlight the elegant, student-centered workflow and operational clarity built into SCHOLARLY.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/sms1.png"
+                    alt="SCHOLARLY product preview"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/sms2.png"
+                    alt="SCHOLARLY product preview alternate view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/sms3.png"
+                    alt="SCHOLARLY product preview detail view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/sms4.png"
+                    alt="SCHOLARLY product preview fourth view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          {slug === "eduai" ? (
+            <div className="mt-12 rounded-[2rem] border border-border/50 bg-card/70 p-4 shadow-xl sm:p-6">
+              <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">Sneak peek</p>
+                  <h3 className="mt-2 text-2xl font-semibold">A polished preview of the experience</h3>
+                </div>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+                  These visuals highlight the intelligent learning workflows and premium interface built into EduAI.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/eduai.png"
+                    alt="EduAI product preview"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/eduai2.png"
+                    alt="EduAI product preview alternate view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/eduai3.png"
+                    alt="EduAI product preview detail view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/80 p-2 shadow-sm">
+                  <img
+                    src="/eduai4.png"
+                    alt="EduAI product preview fourth view"
+                    className="h-full w-full rounded-[1.2rem] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {product.highlights.map((item) => (
               <div key={item.title} className="rounded-3xl border border-border/50 bg-card/70 p-7 shadow-sm">

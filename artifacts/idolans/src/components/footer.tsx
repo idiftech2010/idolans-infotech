@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, ArrowUp, Mail, MessageCircle, Phone, MapPin, X } from "lucide-react";
+import { ArrowUp, Mail, MessageCircle, Phone, MapPin, SendHorizontal, X } from "lucide-react";
 
 type Message = {
   id: number;
@@ -8,19 +8,27 @@ type Message = {
   text: string;
 };
 
-const inquiryOptions = [
+const chatTopics = [
+  { label: "Products", value: "products" },
+  { label: "Services", value: "services" },
+  { label: "Pricing", value: "pricing" },
+  { label: "About us", value: "about" },
+  { label: "Support", value: "support" },
+];
+
+const productOptions = [
   { label: "SCHOLARLY", value: "SCHOLARLY" },
   { label: "ApexCare HMS", value: "ApexCare HMS" },
   { label: "EduAI", value: "EduAI" },
   { label: "Integritest", value: "Integritest" },
   { label: "Idolans Services", value: "Idolans Services" },
-  { label: "General Inquiry", value: "General" },
 ];
 
 export function Footer() {
   const footerFont = { fontFamily: '"Cormorant Garamond", serif' };
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [showProducts, setShowProducts] = useState(false);
+  const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -34,7 +42,7 @@ export function Footer() {
   };
 
   const resetChat = () => {
-    setSelectedProduct(null);
+    setShowProducts(false);
     setMessages([
       {
         id: 1,
@@ -55,30 +63,81 @@ export function Footer() {
   };
 
   const handleOptionSelect = (option: { label: string; value: string }) => {
-    setMessages((prev) => [
-      ...prev,
-      { id: prev.length + 1, role: "user", text: option.label },
-      {
-        id: prev.length + 2,
-        role: "bot",
-        text: `Thanks for your interest in ${option.label}. I can help you explore the right solution, compare features, or schedule a tailored demo.`,
-      },
-    ]);
-    setSelectedProduct(option.value);
+    let response = "";
+
+    switch (option.value) {
+      case "products":
+        response = "Idolans Info-Tech offers a complete product suite for education, healthcare, and enterprise operations, including SCHOLARLY, ApexCare HMS, EduAI, Integratest, and Idolans Services.";
+        setShowProducts(true);
+        break;
+      case "services":
+        response = "We provide implementation, training, integration, support, and digital transformation consulting so your team can adopt and scale with confidence.";
+        setShowProducts(false);
+        break;
+      case "pricing":
+        response = "Pricing is tailored to your size, deployment model, and scope of use. We recommend a discovery conversation so we can propose the right package for your goals.";
+        setShowProducts(false);
+        break;
+      case "about":
+        response = "We build intelligent, secure, and future-ready digital platforms for ambitious schools, hospitals, and organizations that need better operations and better experiences.";
+        setShowProducts(false);
+        break;
+      case "support":
+        response = "Our support team helps with onboarding, technical guidance, optimization, and ongoing care so your systems stay reliable and effective.";
+        setShowProducts(false);
+        break;
+      default:
+        response = `Thanks for your interest in ${option.label}. We can walk you through the product fit, capabilities, and next steps in a conversational way.`;
+        setShowProducts(false);
+        break;
+    }
+
+    setMessages((prev) => {
+      const next = [
+        ...prev,
+        { id: prev.length + 1, role: "user", text: option.label },
+        { id: prev.length + 2, role: "bot", text: response },
+      ];
+      return next;
+    });
   };
 
-  const continueInquiry = () => {
-    if (selectedProduct && typeof window !== "undefined") {
-      window.sessionStorage.setItem("inquiry-product", selectedProduct);
+  const handleSendMessage = () => {
+    const trimmed = draft.trim();
+
+    if (!trimmed) {
+      return;
     }
 
-    const target = document.getElementById("request-demo") ?? document.getElementById("contact");
+    const lower = trimmed.toLowerCase();
+    let response = "";
 
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (lower.includes("product") || lower.includes("products")) {
+      response = "We offer SCHOLARLY, ApexCare HMS, EduAI, Integratest, and Idolans Services, each designed for different needs across education, healthcare, and enterprise operations.";
+      setShowProducts(true);
+    } else if (lower.includes("price") || lower.includes("pricing")) {
+      response = "Pricing depends on your size, deployment model, and scope of use. We can tailor the right package after a short discovery conversation.";
+      setShowProducts(false);
+    } else if (lower.includes("service") || lower.includes("services")) {
+      response = "We support implementation, system integration, training, support, and digital transformation consulting to help you deploy confidently.";
+      setShowProducts(false);
+    } else if (lower.includes("about") || lower.includes("company")) {
+      response = "Idolans Info-Tech builds secure, intelligent digital platforms for schools, hospitals, and ambitious organizations that want better operational performance.";
+      setShowProducts(false);
+    } else if (lower.includes("demo") || lower.includes("schedule")) {
+      response = "We would be happy to arrange a tailored demo. Share a bit more about your goals and we can guide the next steps.";
+      setShowProducts(false);
+    } else {
+      response = "Thanks for reaching out. I can help with product details, services, pricing, implementation, or support. If you tell me what you need, I can guide you further.";
+      setShowProducts(false);
     }
 
-    setIsChatOpen(false);
+    setMessages((prev) => [
+      ...prev,
+      { id: prev.length + 1, role: "user", text: trimmed },
+      { id: prev.length + 2, role: "bot", text: response },
+    ]);
+    setDraft("");
   };
 
   return (
@@ -101,63 +160,68 @@ export function Footer() {
       </button>
 
       {isChatOpen && (
-        <div className="fixed bottom-40 right-6 z-[60] w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white/95 shadow-2xl backdrop-blur dark:border-slate-700 dark:bg-slate-900/95">
-          <div className="flex items-start justify-between border-b border-slate-200 p-4 dark:border-slate-700">
-            <div>
-              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Welcome to Idolans Info-Tech</p>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">How may I help you today?</p>
-            </div>
+        <div className="fixed bottom-40 right-6 z-[60] w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white shadow-2xl backdrop-blur">
+          <div className="flex items-center justify-end border-b border-slate-200 p-3">
             <button
               onClick={() => setIsChatOpen(false)}
-              className="rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
+              className="rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
               aria-label="Close inquiry chat"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
-          <div className="max-h-[360px] space-y-3 overflow-y-auto p-4">
+          <div className="max-h-[380px] space-y-3 overflow-y-auto bg-white p-4">
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
                   className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 shadow-sm ${message.role === "user"
                     ? "bg-primary text-primary-foreground"
-                    : "bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-100"}`}
+                    : "bg-slate-100 text-slate-800"}`}
                 >
                   {message.text}
                 </div>
               </div>
             ))}
 
-            {!selectedProduct && (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-                <p className="mb-2 font-medium">Choose a product to continue.</p>
-                <div className="flex flex-wrap gap-2">
-                  {inquiryOptions.map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => handleOptionSelect(option)}
-                      className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-colors hover:border-primary/40 hover:text-primary dark:border-slate-600 dark:bg-slate-900 dark:text-slate-200"
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
+              <p className="mb-2 font-medium">Ask about anything we offer.</p>
+              <div className="flex flex-wrap gap-2">
+                {(showProducts ? productOptions : chatTopics).map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => handleOptionSelect(option)}
+                    className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-700 transition-colors hover:border-primary/40 hover:text-primary"
+                  >
+                    {option.label}
+                  </button>
+                ))}
               </div>
-            )}
+            </div>
+          </div>
 
-            {selectedProduct && (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
-                <p className="mb-2 font-medium">I can help with your selected product.</p>
-                <button
-                  onClick={continueInquiry}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  Continue to inquiry form
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-            )}
+          <div className="border-t border-slate-200 bg-white p-3">
+            <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2">
+              <input
+                value={draft}
+                onChange={(event) => setDraft(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
+                placeholder="Type your message..."
+                className="flex-1 bg-transparent text-sm text-slate-800 outline-none placeholder:text-slate-400"
+              />
+              <button
+                onClick={handleSendMessage}
+                className="rounded-full bg-primary p-2 text-primary-foreground transition-colors hover:bg-primary/90"
+                aria-label="Send message"
+              >
+                <SendHorizontal className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -184,11 +248,11 @@ export function Footer() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 shrink-0" />
-                  <a href="tel:+2348140000000" className="hover:text-white transition-colors">+234 814 000 0000</a>
+                  <a href="tel:+2348125191913" className="hover:text-white transition-colors">+234 812 519 1913</a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 shrink-0" />
-                  <a href="mailto:hello@idolans.com" className="hover:text-white transition-colors">hello@idolans.com</a>
+                  <a href="mailto:info@idiftech.com" className="hover:text-white transition-colors">info@idiftech.com</a>
                 </div>
               </div>
             </div>
@@ -196,30 +260,30 @@ export function Footer() {
             <div>
               <h4 className="font-semibold mb-4 text-white uppercase tracking-[0.2em] text-sm" style={footerFont}>Products</h4>
               <ul className="space-y-1.5">
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>SCHOLARLY</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>ApexCare HMS</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>EduAI</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Integritest</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>App Engine</a></li>
+                <li><Link href="/products/scholarly" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>SCHOLARLY</Link></li>
+                <li><Link href="/products/apexcare" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>ApexCare HMS</Link></li>
+                <li><Link href="/products/eduai" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>EduAI</Link></li>
+                <li><Link href="/products/integritest" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Integritest</Link></li>
+                <li><Link href="/products/idolans-services" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Idolans Services</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4 text-white uppercase tracking-[0.2em] text-sm" style={footerFont}>Company</h4>
               <ul className="space-y-1.5">
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>About Us</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Careers</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Blog</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Contact</a></li>
+                <li><Link href="/about" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>About Us</Link></li>
+                <li><Link href="/careers" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Careers</Link></li>
+                <li><Link href="/blog" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Blog</Link></li>
+                <li><Link href="/contact" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Contact</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4 text-white uppercase tracking-[0.2em] text-sm" style={footerFont}>Legal</h4>
               <ul className="space-y-1.5">
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Privacy Policy</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Terms of Service</a></li>
-                <li><a href="#" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Service Level Agreement</a></li>
+                <li><Link href="/privacy" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Terms of Service</Link></li>
+                <li><Link href="/sla" className="text-white/70 hover:text-white transition-colors leading-5 text-sm" style={footerFont}>Service Level Agreement</Link></li>
               </ul>
             </div>
           </div>
@@ -229,10 +293,24 @@ export function Footer() {
               © {new Date().getFullYear()} Idolans Info-Tech. All rights reserved.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-colors" style={footerFont}>
+              <a
+                href="https://www.linkedin.com/in/idiftech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-colors"
+                style={footerFont}
+                aria-label="Visit Idiftech on LinkedIn"
+              >
                 In
               </a>
-              <a href="#" className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-colors" style={footerFont}>
+              <a
+                href="https://x.com/idiftech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white hover:text-slate-950 transition-colors"
+                style={footerFont}
+                aria-label="Visit Idiftech on X"
+              >
                 X
               </a>
             </div>
