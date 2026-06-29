@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm install --frozen-lockfile && PORT=3000 BASE_PATH=/ pnpm --dir artifacts/idolans build",
-  "outputDirectory": "artifacts/idolans/dist/public",
+  "buildCommand": "pnpm install --frozen-lockfile && PORT=3000 BASE_PATH=/ pnpm --dir ../idolans build",
+  "outputDirectory": "../idolans/dist/public",
   "rewrites": [
     {
       "source": "/api/(.*)",
