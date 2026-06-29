@@ -33,6 +33,11 @@ export function LeadCapture() {
   const { toast } = useToast();
   const { mutate: createLead, isPending } = useCreateLead();
 
+  const storedProduct = typeof window !== "undefined" ? window.sessionStorage.getItem("inquiry-product") : null;
+  const defaultProduct = storedProduct === "SCHOLARLY" || storedProduct === "ApexCare HMS" || storedProduct === "EduAI" || storedProduct === "Integritest" || storedProduct === "Idolans Services" || storedProduct === "General"
+    ? (storedProduct as FormValues["appCategory"])
+    : "General";
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,7 +45,7 @@ export function LeadCapture() {
       email: "",
       schoolName: "",
       facilitySize: "",
-      appCategory: "General",
+      appCategory: defaultProduct,
       message: "",
     },
   });
