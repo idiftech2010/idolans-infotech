@@ -53,15 +53,95 @@ Open `http://localhost:3000` in your browser.
 
 ## Project Structure
 
-```
-artifacts/
-  api-server/         # Express 5 backend (API routes, DB)
-  idolans/            # React 18 + Vite frontend (landing page)
-lib/
-  api-spec/           # OpenAPI spec (source of truth)
-  api-client-react/   # Generated React Query hooks
-  api-zod/            # Generated Zod validation schemas
-  db/                 # Drizzle ORM schema + DB client
+```text
+.
+├── artifacts/
+│   ├── api-server/
+│   │   ├── build.mjs
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── src/
+│   │       ├── app.ts
+│   │       ├── index.ts
+│   │       ├── lib/
+│   │       │   └── logger.ts
+│   │       ├── middlewares/
+│   │       └── routes/
+│   │           ├── health.ts
+│   │           ├── index.ts
+│   │           └── leads.ts
+│   ├── idolans/
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   ├── vite.config.ts
+│   │   ├── public/
+│   │   │   ├── favicon.svg
+│   │   │   ├── logo.png
+│   │   │   ├── opengraph.jpg
+│   │   │   └── robots.txt
+│   │   └── src/
+│   │       ├── App.tsx
+│   │       ├── index.css
+│   │       ├── main.tsx
+│   │       ├── assets/
+│   │       ├── components/
+│   │       ├── hooks/
+│   │       ├── lib/
+│   │       ├── pages/
+│   │       └── data/
+│   └── mockup-sandbox/
+│       ├── index.html
+│       ├── mockupPreviewPlugin.ts
+│       ├── package.json
+│       ├── tsconfig.json
+│       ├── vite.config.ts
+│       └── src/
+├── attached_assets/
+├── lib/
+│   ├── api-client-react/
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── src/
+│   │       ├── custom-fetch.ts
+│   │       ├── index.ts
+│   │       └── generated/
+│   ├── api-spec/
+│   │   ├── openapi.yaml
+│   │   ├── orval.config.ts
+│   │   └── package.json
+│   ├── api-zod/
+│   │   ├── package.json
+│   │   ├── tsconfig.json
+│   │   └── src/
+│   │       └── generated/
+│   └── db/
+│       ├── drizzle.config.ts
+│       ├── package.json
+│       ├── tsconfig.json
+│       └── src/
+│           ├── index.ts
+│           └── schema/
+├── scripts/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── src/
+│       └── hello.ts
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+├── tsconfig.json
+├── vercel.json
+├── render.yaml
+├── DEPLOYMENT_VERCEL_RENDER.md
+├── README.md
+├── replit.md
+├── ONE_PAGE_MARKETING_Scholarly.md
+├── ONE_PAGE_MARKETING_DOC_integritest.md
+├── ONE-PAGE-MARKETING-BRIEF_EduAI.md
+├── ONE-PAGE-APP_Idolans Services.md
+└── BRAND_MARKETING_ONE_PAGE_apexcarehms.md
 ```
 
 ---

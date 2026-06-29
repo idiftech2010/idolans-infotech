@@ -12,17 +12,17 @@ export function Navbar() {
       <div className="flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3 group">
           <img src="/logo.png" alt="Idolans Info-Tech" className="h-12 w-12 rounded-md object-contain" />
-          <span className="font-semibold text-lg tracking-tight text-white group-hover:text-primary transition-colors">
+          <span className="font-semibold text-lg tracking-tight text-foreground group-hover:text-primary transition-colors">
             Idolans Info-Tech
           </span>
         </Link>
       </div>
 
       <div className="hidden md:flex items-center gap-6">
-        <a href="#products" className="text-sm font-medium text-white hover:text-primary transition-colors">Products</a>
-        <a href="#solutions" className="text-sm font-medium text-white hover:text-primary transition-colors">Solutions</a>
-        <a href="#pricing" className="text-sm font-medium text-white hover:text-primary transition-colors">Pricing</a>
-        <a href="#about" className="text-sm font-medium text-white hover:text-primary transition-colors">About</a>
+        <a href="#products" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Products</a>
+        <a href="#solutions" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Solutions</a>
+        <a href="#pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Pricing</a>
+        <a href="#about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">About</a>
       </div>
 
       <div className="flex items-center gap-4">

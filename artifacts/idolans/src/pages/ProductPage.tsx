@@ -46,24 +46,24 @@ export default function ProductPage() {
               transition={{ duration: 0.6 }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white/90 backdrop-blur">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-3 py-1 text-sm font-medium text-foreground/90 backdrop-blur dark:border-white/20 dark:bg-white/10 dark:text-white/90">
                 <Sparkles className="h-4 w-4" />
                 {product.label}
               </div>
-              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground dark:text-white sm:text-5xl lg:text-6xl">
                 {product.name}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-white/80">
+              <p className="mt-6 text-lg leading-8 text-muted-foreground dark:text-white/80">
                 {product.tagline}
               </p>
-              <p className="mt-6 max-w-xl text-base leading-8 text-white/70">
+              <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground dark:text-white/70">
                 {product.overview}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button asChild size="lg" className="rounded-full bg-white text-slate-950 hover:bg-white/90">
+                <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 dark:bg-white dark:text-slate-950 dark:hover:bg-white/90">
                   <Link href="#contact">{product.ctaLabel}</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20">
+                <Button asChild size="lg" variant="outline" className="rounded-full border-border/60 bg-background/80 text-foreground hover:bg-accent dark:border-white/30 dark:bg-white/10 dark:text-white dark:hover:bg-white/20">
                   <Link href="/">Back to suite</Link>
                 </Button>
               </div>
@@ -73,22 +73,22 @@ export default function ProductPage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="rounded-[2rem] border border-white/15 bg-slate-950/70 p-6 shadow-2xl backdrop-blur-xl"
+              className="rounded-[2rem] border border-border/50 bg-card/90 p-6 shadow-2xl backdrop-blur-xl dark:border-white/15 dark:bg-slate-950/70"
             >
-              <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/10 p-4">
+              <div className="flex items-center justify-between rounded-2xl border border-border/50 bg-background/80 p-4 dark:border-white/10 dark:bg-white/10">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-white/70">Signature experience</p>
-                  <p className="mt-1 text-xl font-semibold text-white">{product.description}</p>
+                  <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground dark:text-white/70">Signature experience</p>
+                  <p className="mt-1 text-xl font-semibold text-foreground dark:text-white">{product.description}</p>
                 </div>
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-white">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-white/15 dark:text-white">
                   <Icon className="h-7 w-7" />
                 </div>
               </div>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 {product.outcomes.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-2xl font-semibold text-white">{item.value}</p>
-                    <p className="mt-1 text-sm text-white/65">{item.label}</p>
+                  <div key={item.label} className="rounded-2xl border border-border/50 bg-background/70 p-4 dark:border-white/10 dark:bg-white/5">
+                    <p className="text-2xl font-semibold text-foreground dark:text-white">{item.value}</p>
+                    <p className="mt-1 text-sm text-muted-foreground dark:text-white/65">{item.label}</p>
                   </div>
                 ))}
               </div>
